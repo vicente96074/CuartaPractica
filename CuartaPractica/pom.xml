@@ -20,7 +20,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>CuartaPratica.Run.Main</mainClass>
+                            <mainClass>run.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
