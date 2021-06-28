@@ -1,4 +1,3 @@
-
 package jugador;
 
 import java.io.DataOutputStream;
@@ -116,51 +115,51 @@ public class AgregarJugador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirJButtonMouseClicked
-         this.hide();
+        this.hide();
     }//GEN-LAST:event_salirJButtonMouseClicked
 
     private void limpiarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarJButtonMouseClicked
         //Limpiamos a los dos cajas de texto
-        nombreJTextField.setText("");
-        apellidoJTextField.setText("");
+        limpiarCajas();
     }//GEN-LAST:event_limpiarJButtonMouseClicked
 
     private void ingresarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarJButtonMouseClicked
-        
-        for(int i=0; i<proceso.cantidadRegistro(); i++){
-            if(proceso.buscaId(idJugador)){
-                idJugador++;
-            }
-        }
-        
-        if(nombreJTextField.getText() != null && apellidoJTextField.getText() != null ){
-            String nombre = nombreJTextField.getText();
-            String apellido = apellidoJTextField.getText();
-            Jugador jugador = new Jugador(idJugador, nombre, apellido, 0, 0, 0);
-            jugadores.add(jugador);
-            try {
-                grabarBinario();
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, e);
-            }
-            
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese nombre y apellido del jugador");
-        }
-        
+        ingresarRegistro();
     }//GEN-LAST:event_ingresarJButtonMouseClicked
 
-    private void grabarBinario() throws IOException{
-        File file = new File("jugadores.dat");
-        if(!file.exists()){
-            file.createNewFile();
-             JOptionPane.showMessageDialog(null, "Se crea el archivo binario");
+    public void ingresarRegistro() {
+        try {
+            if (leerNombre() == null) {
+                mensaje("Ingresar nombre");
+            } else if (leerApellido() == null) {
+                mensaje("Ingresar apellido");
+            } else {
+                do {
+                    idJugador++;
+                    j = new Jugador(idJugador, leerNombre(), leerApellido(), 0, 0, 0);
+                } while (proceso.buscaId(j.getId()));
+
+                proceso.agregarRegistro(j);
+
+                grabarBinario();
+                limpiarCajas();
+            }
+        } catch (Exception ex) {
+            mensaje(ex.getMessage());
         }
-        
+    }
+
+    private void grabarBinario() throws IOException {
+        File file = new File("jugadores.dat");
+        if (!file.exists()) {
+            file.createNewFile();
+            JOptionPane.showMessageDialog(null, "Se crea el archivo binario");
+        }
+
         DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
-        
+
         //Escribimos al archivo binario
-        for(Jugador j: jugadores){
+        for (Jugador j : jugadores) {
             dos.writeInt(j.getId());
             dos.writeUTF(j.getNombre());
             dos.writeUTF(j.getApellido());
@@ -168,9 +167,36 @@ public class AgregarJugador extends javax.swing.JFrame {
             dos.writeInt(j.getPartidasGandas());
             dos.writeInt(j.getPartidasPerdidas());
         }
-        
+
         dos.close();
         JOptionPane.showMessageDialog(null, "¡Jugador agregado exitosamente!");
+    }
+
+    private String leerNombre() {
+        try {
+            String nombre = nombreJTextField.getText();
+            return nombre;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    private String leerApellido() {
+        try {
+            String apellido = apellidoJTextField.getText();
+            return apellido;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    private void limpiarCajas() {
+        nombreJTextField.setText("");
+        apellidoJTextField.setText("");
+    }
+
+    public void mensaje(String texto) {
+        JOptionPane.showMessageDialog(null, texto);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -187,4 +213,5 @@ public class AgregarJugador extends javax.swing.JFrame {
     private ArrayList<Jugador> jugadores;
     private int idJugador = 0;
     private Proceso proceso;
+    private Jugador j;
 }
