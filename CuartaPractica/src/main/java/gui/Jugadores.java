@@ -14,13 +14,13 @@ public class Jugadores extends javax.swing.JFrame {
     public Jugadores(AgregarJugador agregarJugador) {
         initComponents();
         this.agregarJugador = agregarJugador;
-        /*try {
+        try {
             cargarBinario();
             listarRegistro();
         } catch (Exception e) {
             this.agregarJugador.mensaje("No existe registro aún");
-        }*/
-        
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -89,34 +89,33 @@ public class Jugadores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cargarBinario(){
+    public void cargarBinario() {
         File ruta = new File("jugadores.dat");
-        try{
-            
+        try {
+
             FileReader fi = new FileReader(ruta);
             BufferedReader bu = new BufferedReader(fi);
-            
-            
+
             String linea = null;
-            while((linea = bu.readLine())!=null){
-                StringTokenizer st = new StringTokenizer(linea, ",");
+            while ((linea = bu.readLine()) != null) {
+                
+                StringTokenizer st = new StringTokenizer(linea, ", ");
                 j = new Jugador();
                 j.setId(Integer.parseInt(st.nextToken()));
-                j.setNombre(String.valueOf(st.nextToken()));
-                j.setApellido(String.valueOf(st.nextToken()));
-                j.setPartidasJugadas(Integer.valueOf(st.nextToken()));
-                j.setPartidasGandas(Integer.valueOf(st.nextToken()));
-                j.setPartidasPerdidas(Integer.valueOf(st.nextToken()));
+                j.setNombre((String)(st.nextToken()));
+                j.setApellido((String)(st.nextToken()));
+                j.setPartidasJugadas(Integer.parseInt(st.nextToken()));
+                j.setPartidasGandas(Integer.parseInt(st.nextToken()));
+                j.setPartidasPerdidas(Integer.parseInt(st.nextToken()));
                 this.agregarJugador.getProceso().agregarRegistro(j);
-                System.out.println("Jugador sad: "+j.getNombre());
             }
-            
+
             bu.close();
-        }catch(Exception ex){
-            this.agregarJugador.mensaje("Error al cargar archivo: "+ex.getMessage());
+        } catch (Exception ex) {
+            this.agregarJugador.mensaje("Error al cargar archivo: " + ex.getMessage());
         }
     }
-    
+
     public void listarRegistro() {
         DefaultTableModel dt = new DefaultTableModel() {
             @Override
@@ -134,7 +133,8 @@ public class Jugadores extends javax.swing.JFrame {
 
         tablaJugadores.setDefaultRenderer(Object.class, new imgTabla());
 
-        Object fila[] = new Object[tablaJugadores.getColumnCount()];
+        Object fila[];
+        fila = new Object[tablaJugadores.getColumnCount()];
         for (int i = 0; i < agregarJugador.getProceso().cantidadRegistro(); i++) {
             j = agregarJugador.getProceso().obtenerRegistro(i);
             fila[0] = j.getId();
@@ -143,9 +143,9 @@ public class Jugadores extends javax.swing.JFrame {
             fila[3] = j.getPartidasJugadas();
             fila[4] = j.getPartidasGandas();
             fila[5] = j.getPartidasPerdidas();
-
+            dt.addRow(fila);
         }
-        
+
         tablaJugadores.setModel(dt);
         tablaJugadores.setRowHeight(60);
     }

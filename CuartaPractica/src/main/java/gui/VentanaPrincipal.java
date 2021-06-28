@@ -123,14 +123,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_salirJButtonActionPerformed
 
     private void mostrarJugadoresJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarJugadoresJButtonActionPerformed
-        listaJugadores.setVisible(true);
+        
         try {
-            listaJugadores.cargarBinario();
             listaJugadores.listarRegistro();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
+        listaJugadores.setVisible(true);
     }//GEN-LAST:event_mostrarJugadoresJButtonActionPerformed
 
     private void ingresarJugadorJButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarJugadorJButton1MouseClicked
