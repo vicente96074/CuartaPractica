@@ -12,6 +12,8 @@ public class AgregarJugador extends javax.swing.JFrame {
 
     public AgregarJugador() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Agregar Jugador");
         jugadores = new ArrayList<>();
         proceso = new Proceso(jugadores);
     }
@@ -114,11 +116,7 @@ public class AgregarJugador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirJButtonMouseClicked
-         try {
-            System.exit(0);
-        } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+         this.hide();
     }//GEN-LAST:event_salirJButtonMouseClicked
 
     private void limpiarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarJButtonMouseClicked
@@ -156,6 +154,7 @@ public class AgregarJugador extends javax.swing.JFrame {
         File file = new File("jugadores.dat");
         if(!file.exists()){
             file.createNewFile();
+             JOptionPane.showMessageDialog(null, "Se crea el archivo binario");
         }
         
         DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
@@ -171,6 +170,7 @@ public class AgregarJugador extends javax.swing.JFrame {
         }
         
         dos.close();
+        JOptionPane.showMessageDialog(null, "¡Jugador agregado exitosamente!");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

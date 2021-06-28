@@ -2,13 +2,15 @@
 package gui;
 
 import javax.swing.JOptionPane;
+import jugador.AgregarJugador;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
-        setSize(900, 900);
+        setSize(370, 300);
+        agregarJugador = new AgregarJugador();
     }
 
     @SuppressWarnings("unchecked")
@@ -60,11 +62,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 ingresarJugadorJButton1MouseClicked(evt);
             }
         });
-        ingresarJugadorJButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ingresarJugadorJButton1ActionPerformed(evt);
-            }
-        });
 
         mostrarJugadoresJButton.setBackground(new java.awt.Color(102, 255, 255));
         mostrarJugadoresJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -110,10 +107,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ingresarJugadorJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarJugadorJButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ingresarJugadorJButton1ActionPerformed
-
     private void salirJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirJButtonMouseClicked
         try {
             System.exit(0);
@@ -132,12 +125,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrarJugadoresJButtonActionPerformed
 
     private void ingresarJugadorJButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarJugadorJButton1MouseClicked
-        
+        agregarJugador.setVisible(true);
     }//GEN-LAST:event_ingresarJugadorJButton1MouseClicked
 
-    public void otrosComponentes(){
-        
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ingresarJugadorJButton1;
     private javax.swing.JPanel jPanel1;
@@ -145,4 +135,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton mostrarJugadoresJButton;
     private javax.swing.JButton salirJButton;
     // End of variables declaration//GEN-END:variables
+    private AgregarJugador agregarJugador;
 }
