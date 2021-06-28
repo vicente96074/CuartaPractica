@@ -91,6 +91,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jugarJButtonMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="salirJButton">
           <Properties>
@@ -110,7 +113,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="salirJButtonMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirJButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ingresarJugadorJButton1">

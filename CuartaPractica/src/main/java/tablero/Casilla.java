@@ -8,9 +8,10 @@ import javax.swing.JPanel;
 public class Casilla extends JPanel{
 
     public Casilla(int id, int posX, int posY) {
-        this.setBounds(posX, posY, 70, 70);
+        this.setBounds(posX, posY, 60, 60);
+        //this.setLayout(null);
         textoId = new JLabel(String.valueOf(id));
-        textoId.setBounds(10,10,20,20);
+        textoId.setBounds(10,10,60,60);
         textoId.setForeground(Color.BLACK);
         add(textoId);
         this.id = id;

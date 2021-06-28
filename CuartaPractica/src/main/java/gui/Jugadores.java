@@ -13,6 +13,7 @@ public class Jugadores extends javax.swing.JFrame {
 
     public Jugadores(AgregarJugador agregarJugador) {
         initComponents();
+        setLocationRelativeTo(null);
         this.agregarJugador = agregarJugador;
         try {
             cargarBinario();
@@ -130,7 +131,7 @@ public class Jugadores extends javax.swing.JFrame {
         dt.addColumn("P. jugadas");
         dt.addColumn("P. ganadas");
         dt.addColumn("P. perdidas");
-
+        
         tablaJugadores.setDefaultRenderer(Object.class, new imgTabla());
 
         Object fila[];
@@ -148,6 +149,7 @@ public class Jugadores extends javax.swing.JFrame {
 
         tablaJugadores.setModel(dt);
         tablaJugadores.setRowHeight(60);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

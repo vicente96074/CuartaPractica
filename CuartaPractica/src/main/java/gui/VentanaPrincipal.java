@@ -11,6 +11,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setSize(370, 300);
         
+        tablero = new Tablero();
         agregarJugador = new AgregarJugador();
         listaJugadores = new Jugadores(agregarJugador);
     }
@@ -37,6 +38,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jugarJButton.setForeground(new java.awt.Color(0, 0, 0));
         jugarJButton.setText("Jugar");
         jugarJButton.setBorder(null);
+        jugarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jugarJButtonMouseClicked(evt);
+            }
+        });
 
         salirJButton.setBackground(new java.awt.Color(102, 255, 255));
         salirJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -46,11 +52,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         salirJButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 salirJButtonMouseClicked(evt);
-            }
-        });
-        salirJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirJButtonActionPerformed(evt);
             }
         });
 
@@ -118,10 +119,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_salirJButtonMouseClicked
 
-    private void salirJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirJButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_salirJButtonActionPerformed
-
     private void mostrarJugadoresJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarJugadoresJButtonActionPerformed
         
         try {
@@ -136,6 +133,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         agregarJugador.setVisible(true);
     }//GEN-LAST:event_ingresarJugadorJButton1MouseClicked
 
+    private void jugarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jugarJButtonMouseClicked
+        tablero.setVisible(true);
+    }//GEN-LAST:event_jugarJButtonMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ingresarJugadorJButton1;
     private javax.swing.JPanel jPanel1;
@@ -145,4 +146,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private AgregarJugador agregarJugador;
     private Jugadores listaJugadores;
+    private Tablero tablero;
 }
