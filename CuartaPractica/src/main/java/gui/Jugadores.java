@@ -1,12 +1,26 @@
-
 package gui;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.util.StringTokenizer;
+import javax.swing.table.DefaultTableModel;
+import jugador.AgregarJugador;
+import jugador.Jugador;
+import jugador.imgTabla;
 
 public class Jugadores extends javax.swing.JFrame {
 
-    public Jugadores() {
+    public Jugadores(AgregarJugador agregarJugador) {
         initComponents();
+        this.agregarJugador = agregarJugador;
+        /*try {
+            cargarBinario();
+            listarRegistro();
+        } catch (Exception e) {
+            this.agregarJugador.mensaje("No existe registro aún");
+        }*/
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -17,8 +31,6 @@ public class Jugadores extends javax.swing.JFrame {
         tituloJLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaJugadores = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -77,21 +89,74 @@ public class Jugadores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cargarDatos(){
-        File file = new File("jugadores.dat");
-        
-        
-        while(){
+    public void cargarBinario(){
+        File ruta = new File("jugadores.dat");
+        try{
             
+            FileReader fi = new FileReader(ruta);
+            BufferedReader bu = new BufferedReader(fi);
+            
+            
+            String linea = null;
+            while((linea = bu.readLine())!=null){
+                StringTokenizer st = new StringTokenizer(linea, ",");
+                j = new Jugador();
+                j.setId(Integer.parseInt(st.nextToken()));
+                j.setNombre(String.valueOf(st.nextToken()));
+                j.setApellido(String.valueOf(st.nextToken()));
+                j.setPartidasJugadas(Integer.valueOf(st.nextToken()));
+                j.setPartidasGandas(Integer.valueOf(st.nextToken()));
+                j.setPartidasPerdidas(Integer.valueOf(st.nextToken()));
+                this.agregarJugador.getProceso().agregarRegistro(j);
+                System.out.println("Jugador sad: "+j.getNombre());
+            }
+            
+            bu.close();
+        }catch(Exception ex){
+            this.agregarJugador.mensaje("Error al cargar archivo: "+ex.getMessage());
         }
-        
-        
     }
     
+    public void listarRegistro() {
+        DefaultTableModel dt = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        dt.addColumn("Id");
+        dt.addColumn("Nombre");
+        dt.addColumn("Apellido");
+        dt.addColumn("P. jugadas");
+        dt.addColumn("P. ganadas");
+        dt.addColumn("P. perdidas");
+
+        tablaJugadores.setDefaultRenderer(Object.class, new imgTabla());
+
+        Object fila[] = new Object[tablaJugadores.getColumnCount()];
+        for (int i = 0; i < agregarJugador.getProceso().cantidadRegistro(); i++) {
+            j = agregarJugador.getProceso().obtenerRegistro(i);
+            fila[0] = j.getId();
+            fila[1] = j.getNombre();
+            fila[2] = j.getApellido();
+            fila[3] = j.getPartidasJugadas();
+            fila[4] = j.getPartidasGandas();
+            fila[5] = j.getPartidasPerdidas();
+
+        }
+        
+        tablaJugadores.setModel(dt);
+        tablaJugadores.setRowHeight(60);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tablaJugadores;
     private javax.swing.JLabel tituloJLabel;
     // End of variables declaration//GEN-END:variables
+
+    private Jugador j;
+    private AgregarJugador agregarJugador;
 }

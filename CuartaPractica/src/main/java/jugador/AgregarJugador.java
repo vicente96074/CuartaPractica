@@ -1,5 +1,6 @@
 package jugador;
 
+import gui.Jugadores;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -199,6 +200,10 @@ public class AgregarJugador extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, texto);
     }
 
+    public Proceso getProceso() {
+        return proceso;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apellidoJLabel;
     private javax.swing.JTextField apellidoJTextField;

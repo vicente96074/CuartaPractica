@@ -5,7 +5,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Jugador implements Serializable{
-
+    
+    public Jugador(){
+        
+    }
+    
     public Jugador(int id, String nombre, String apellido, int partidasJugadas, int partidasGandas, int partidasPerdidas) {
         this.id = id;
         this.nombre = nombre;

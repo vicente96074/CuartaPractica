@@ -10,7 +10,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setSize(370, 300);
+        
         agregarJugador = new AgregarJugador();
+        listaJugadores = new Jugadores(agregarJugador);
     }
 
     @SuppressWarnings("unchecked")
@@ -111,7 +113,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         try {
             System.exit(0);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "No existe registro aun");
         }
         
     }//GEN-LAST:event_salirJButtonMouseClicked
@@ -121,7 +123,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_salirJButtonActionPerformed
 
     private void mostrarJugadoresJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarJugadoresJButtonActionPerformed
-        // TODO add your handling code here:
+        listaJugadores.setVisible(true);
+        try {
+            listaJugadores.cargarBinario();
+            listaJugadores.listarRegistro();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
     }//GEN-LAST:event_mostrarJugadoresJButtonActionPerformed
 
     private void ingresarJugadorJButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarJugadorJButton1MouseClicked
@@ -136,4 +145,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton salirJButton;
     // End of variables declaration//GEN-END:variables
     private AgregarJugador agregarJugador;
+    private Jugadores listaJugadores;
 }
