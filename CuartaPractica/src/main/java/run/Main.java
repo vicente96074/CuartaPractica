@@ -1,8 +1,11 @@
 
 package run;
 
+import gui.VentanaPrincipal;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Prueba main");
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+        ventanaPrincipal.setVisible(true);
     }
 }
