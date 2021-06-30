@@ -11,7 +11,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setSize(370, 300);
         
-        cantidadJugadores = new CantidadJugadores();
         tablero = new Tablero();
         agregarJugador = new AgregarJugador();
         listaJugadores = new Jugadores(agregarJugador);
@@ -148,5 +147,4 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private AgregarJugador agregarJugador;
     private Jugadores listaJugadores;
     private Tablero tablero;
-    private CantidadJugadores cantidadJugadores;
 }

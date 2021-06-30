@@ -1,29 +1,20 @@
 package controladores;
 
-import gui.CantidadJugadores;
 import gui.RSScaleLabel;
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import jugador.Jugador;
-import serpiente.Escalera;
-import serpiente.Serpiente;
 import tablero.Casilla;
 
 public class ControladorTabla {
 
     public ControladorTabla(JFrame tablaFrame) {
         this.tablaFrame = tablaFrame;
-        jugadores = new Jugador[4];
         iniciarComponentes();
     }
 
@@ -56,10 +47,6 @@ public class ControladorTabla {
         turno = new JLabel();
         tituloTurno = new JLabel();
         salir = new JButton();
-
-        jugadores = new Jugador[4];
-        serpientes = new Serpiente[4];
-        escaleras = new Escalera[4];
 
         tablaFrame.setLayout(null);
         tablaFrame.setLocationRelativeTo(null);
@@ -324,11 +311,11 @@ public class ControladorTabla {
         tabla.get(pos).remove(label);
         this.tablaFrame.pack();
     }
-    
-    public void agregarAvatar(){
-        
+
+    public void agregarAvatar() {
+
     }
-    
+
     private void agregarAvatar(int pos, int j) {
         switch (j) {
             case 1:
@@ -382,9 +369,6 @@ public class ControladorTabla {
     private JLabel turno;
     private JLabel tituloTurno;
     private JButton salir;
-    private Jugador[] jugadores;
-    private Serpiente[] serpientes;
-    private Escalera[] escaleras;
     private JComboBox<String> nJugadores;
     private JButton aceptar;
     private JLabel avatarJ1;
