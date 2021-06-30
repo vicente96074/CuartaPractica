@@ -11,6 +11,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setSize(370, 300);
         
+        cantidadJugadores = new CantidadJugadores();
         tablero = new Tablero();
         agregarJugador = new AgregarJugador();
         listaJugadores = new Jugadores(agregarJugador);
@@ -134,7 +135,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresarJugadorJButton1MouseClicked
 
     private void jugarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jugarJButtonMouseClicked
-        tablero.setVisible(true);
+        tablero.iniciar();
     }//GEN-LAST:event_jugarJButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -147,4 +148,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private AgregarJugador agregarJugador;
     private Jugadores listaJugadores;
     private Tablero tablero;
+    private CantidadJugadores cantidadJugadores;
 }

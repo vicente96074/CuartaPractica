@@ -1,0 +1,8 @@
+tablero(10, 10);
+pierdeturno(5, 3);
+tiradados(2, 2);
+avanza(2, 3, 5);
+retrocede(3, 2, 3);
+subida(2, 3, 3, 5)
+bajada(5, 7, 4, 8)
+

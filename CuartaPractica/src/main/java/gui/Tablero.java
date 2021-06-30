@@ -35,6 +35,10 @@ public class Tablero extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+    public void iniciar(){
+        controladorTabla.iniciarJugadores();
+        setVisible(true);
+    }
     
     private ControladorTabla controladorTabla;
 }
