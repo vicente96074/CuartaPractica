@@ -36,4 +36,5 @@
             <version>RELEASE123</version>
         </dependency>
     </dependencies>
+    <name>CuartaPractica</name>
 </project>
